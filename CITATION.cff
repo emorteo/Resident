@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: RESIDENT
+message: "If you use RESIDENT, please cite the repository and the relevant scientific methods literature for your analysis."
+type: software
+authors:
+  - family-names: Morteo
+    given-names: Eduardo
+license: MIT
+version: 0.9.42
+date-released: 2026-10-13
+repository-code: "https://github.com/emorteo/Resident"
+abstract: "R workflow for capture-recapture encounter histories, residency and site-fidelity classification, discovery curves, and exploratory abundance-model screening."

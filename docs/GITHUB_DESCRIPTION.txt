@@ -1,0 +1,1 @@
+R workflow for capture-recapture encounter histories, dolphin residency/site-fidelity classification, discovery curves, and exploratory abundance-model screening.

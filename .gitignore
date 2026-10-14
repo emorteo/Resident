@@ -1,0 +1,65 @@
+# RESIDENT public repository ignore rules
+
+# R session and local workspace state
+.RData
+.Rhistory
+.Rproj.user/
+*.Rproj
+.Ruserdata
+
+# macOS and editor files
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Build products and compiled libraries
+*.o
+*.so
+*.dll
+*.dylib
+*.Rcheck/
+*.tar.gz
+
+# Private empirical/catalogue data and local working material
+residency_MARK_SOCPROG_inputs/
+Documentation/
+Check-commits/
+Old_Outputs/
+work/
+secrets/
+private/
+*.xlsx
+*.xls
+*.doc
+*.docx
+*.pdf
+*.rds
+*.Rds
+*.RData
+*.sqlite
+*.sqlite3
+
+# Generated run outputs
+Outputs/*
+!Outputs/
+!Outputs/resident_pipeline_v0.9.42.R
+!Outputs/resident_tmb_v0.9.42.cpp
+!Outputs/resident_tmb.cpp
+!Outputs/resident_pipeline_usage_v0.9.42.md
+!Outputs/resident_pipeline_upgrade_report_v0.9.42.txt
+!Outputs/mandatory_pre_delivery_checklist_v0.9.42.md
+
+# Public placeholder directories
+!data/
+!data/.gitkeep
+!examples/
+!examples/.gitkeep
+
+# Temporary files
+*.tmp
+*.bak
+*.orig

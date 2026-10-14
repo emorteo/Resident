@@ -1,0 +1,66 @@
+Resident Pipeline Upgrade/Fix Report v0.9.42
+============================================
+
+Scope
+-----
+This version uses the v0.9.41 audit map to harden the standalone architecture without changing the working menu, import, plotting, classification, or model-fitting behavior.
+
+Problem addressed
+-----------------
+The v0.9.41 standalone file preserved historical function definitions inside the same monolithic R file. That was useful for continuity, but risky because static code searches could find inactive implementations of dispatchers, import functions, and Option 22 fitters. Future fixes could accidentally target inactive code.
+
+What changed
+------------
+1. Added an active-implementation manifest for high-risk functions.
+2. Added a runtime active-implementation report.
+3. Added a duplicate-function report that identifies historical override functions and their line evidence.
+4. Added a TMB alias synchronization report.
+5. Added an assertion helper: resident_assert_active_implementations().
+6. Synchronized Outputs/resident_tmb.cpp with Outputs/resident_tmb_v0.9.42.cpp.
+7. Replaced a hard-coded v0.8.9 configuration-report reproducibility string with resident_active_version().
+
+Functions added
+---------------
+- resident_function_body_text()
+- resident_active_implementation_manifest()
+- resident_active_implementation_report()
+- resident_duplicate_function_report()
+- resident_tmb_file_sync_report()
+- resident_assert_active_implementations()
+
+Preserved behavior
+------------------
+The following existing behavior was intentionally preserved:
+- Option 1 import workflows and supported formats.
+- Options 1-14 summary, classification, and plot workflows.
+- Options 15-20 export workflows.
+- Option 21 abundance recommendation teaching guide.
+- Option 22 guided model-selection/fitting wizard.
+- Option 23 fitted abundance retrieval.
+- Temporal-structure gates.
+- Standalone loading with no earlier pipeline sourcing.
+
+Regression tests
+----------------
+Command run from the repository root:
+Rscript Outputs/test_resident_pipeline_v0.9.42.R
+
+Result:
+All v0.9.42 regression tests passed.
+
+New tests added
+---------------
+Test 23 verifies:
+- high-risk active functions contain expected implementation markers;
+- high-risk active functions do not contain source() calls;
+- known duplicate historical dispatchers are reported explicitly;
+- Outputs/resident_tmb.cpp is synchronized with Outputs/resident_tmb_v0.9.42.cpp.
+
+Ledger additions
+----------------
+- E040: standalone duplicate implementations lacked an explicit active-implementation guard.
+- E041: hard-coded old v0.8.9 reproducibility text remained in the configuration report helper.
+
+Remaining limitations
+---------------------
+v0.9.42 does not implement new statistical model likelihoods. It is an architectural hardening release. Existing diagnostic/simplified model-family labels remain scientifically necessary and should not be relabelled as full Program MARK-equivalent likelihoods.
